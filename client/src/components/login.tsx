@@ -20,28 +20,26 @@ const Login = () => {
   }, [user, loading]);
 
   return (
-    <div className="login">
-      <div className="login__container">
-        <input
-          type="text"
-          value={email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button onClick={() => logInWithEmailAndPassword(email, password)}>Login</button>
-        <button onClick={signInWithGoogle}>Login with Google</button>
-        <div>
-          <Link to="/reset">Forgot Password</Link>
-        </div>
-        <div>
-          Don't have an account? <Link to="/register">Register</Link> now.
-        </div>
+    <div>
+      <input
+        type="text"
+        value={email}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+        placeholder="E-mail Address"
+      />
+      <input
+        type="password"
+        value={password}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+        placeholder="Password"
+      />
+      <button onClick={() => logInWithEmailAndPassword(email, password)}>Login</button>
+      <button onClick={signInWithGoogle}>Login with Google</button>
+      <div>
+        <Link to="/reset">Forgot Password</Link>
+      </div>
+      <div>
+        Don't have an account? <Link to="/register">Register</Link> now.
       </div>
     </div>
   );
