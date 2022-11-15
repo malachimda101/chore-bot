@@ -2,9 +2,10 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import Login from './components/login';
 import { ReactComponent as OrangeBg } from './assets/OrangeBg.svg';
 import { ReactComponent as BlueBg } from './assets/BlueBg.svg';
-import { auth, logout } from './services/google.firebase.login';
+import { auth } from './services/google.firebase.login';
 import Dashboard from './components/dashboard';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { User } from 'firebase/auth';
 
 const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = [
@@ -24,7 +25,8 @@ const months = [
 
 const App = () => {
   const d: Date = new Date();
-  const [user, loading, error] = useAuthState(auth);
+  const [user, loading, error]: [User | null | undefined, boolean, Error | undefined] =
+    useAuthState(auth);
   if (loading) {
     return (
       <>

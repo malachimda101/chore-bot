@@ -1,12 +1,12 @@
 import { firebase_app } from './firebase.config';
 import { database } from './database';
 
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, Auth } from 'firebase/auth';
 import { query, getDocs, collection, where, addDoc } from 'firebase/firestore';
 
-const auth = getAuth(firebase_app);
+const auth: Auth = getAuth(firebase_app);
 
-const googleProvider = new GoogleAuthProvider();
+const googleProvider: GoogleAuthProvider = new GoogleAuthProvider();
 const signInWithGoogle = async (): Promise<void> => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
@@ -18,7 +18,8 @@ const signInWithGoogle = async (): Promise<void> => {
         uid: user.uid,
         name: user.displayName,
         authProvider: 'google',
-        email: user.email
+        email: user.email,
+        registered: false
       });
     }
   } catch (err: any) {
