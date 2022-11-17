@@ -27,8 +27,8 @@ const signInWithGoogle = async (): Promise<void> => {
   }
 };
 
-const logout = () => {
-  signOut(auth);
+const logout = async () => {
+  await signOut(auth);
 };
 
 export { auth, signInWithGoogle, logout };

@@ -9,16 +9,19 @@ import {
   QuerySnapshot,
   where
 } from 'firebase/firestore';
+import React from 'react';
 
 const database: Firestore = getFirestore(firebase_app);
 
-const fetch_user_data = async (user_id: string) => {
+const fetchUserData = async (
+  user_id: string,
+  setUserState: React.Dispatch<React.SetStateAction<any>>
+) => {
   const q = query(collection(database, 'users'), where('uid', '==', user_id));
   const querySnapshot: QuerySnapshot<DocumentData> = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    console.log('test', ' => ', doc.data());
-    return doc.data();
+    setUserState(doc.data());
   });
 };
 
-export { database, fetch_user_data };
+export { database, fetchUserData };
